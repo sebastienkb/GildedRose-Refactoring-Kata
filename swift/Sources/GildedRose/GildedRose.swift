@@ -43,12 +43,6 @@ private extension Item {
             quality = Constants.maximumLegendaryQuality // `break` would also be valid because its init contains 80; this would be a post-init corrective measure
         }
     }
-
-    enum Constants {
-        static let minimumQuality = 0
-        static let maximumRegularQuality = 50
-        static let maximumLegendaryQuality = 80
-    }
 }
 
 private enum QualityEvolution {
@@ -70,4 +64,11 @@ private enum QualityEvolution {
             self = .decreasing
         }
     }
+}
+
+fileprivate enum Constants {
+
+    static let minimumQuality = 0
+    static let maximumRegularQuality = 50
+    static let maximumLegendaryQuality = 80
 }
