@@ -107,6 +107,7 @@ private enum QualityEvolution {
     case unaffected // doesn't change
 
     init(for itemName: String) {
+        // rules may be adapted depending if input is error-prone or not: case-insensitive, trim whitespaces, regex, ...
         if itemName.starts(with: "Sulfuras") {
             self = .unaffected
         } else if itemName == "Aged Brie" {
