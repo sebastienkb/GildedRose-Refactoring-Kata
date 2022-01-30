@@ -57,3 +57,28 @@ public class GildedRose {
         }
     }
 }
+
+private extension Item {
+
+    var qualityEvolution: QualityEvolution { QualityEvolution(for: name) }
+}
+
+private enum QualityEvolution {
+
+    case decreasing // decreases over time
+    case increasing // increases over time
+    case pumpAndDump // increases sharply until its sellIn value, then drops to 0
+    case unaffected // doesn't change
+
+    init(for itemName: String) {
+        if itemName.starts(with: "Sulfuras") {
+            self = .unaffected
+        } else if itemName == "Aged Brie" {
+            self = .increasing
+        } else if itemName.starts(with: "Backstage pass") {
+            self = .pumpAndDump
+        } else {
+            self = .decreasing
+        }
+    }
+}
