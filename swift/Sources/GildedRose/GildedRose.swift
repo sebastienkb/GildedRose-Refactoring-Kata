@@ -6,9 +6,7 @@ public class GildedRose {
     }
 
     public func updateQuality() {
-        for item in items {
-            item.updateQuality()
-        }
+        items.forEach { $0.updateQuality() }
     }
 }
 
