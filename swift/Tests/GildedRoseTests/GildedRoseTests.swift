@@ -126,4 +126,15 @@ class GildedRoseTests: XCTestCase {
 
         XCTAssertEqual(app.items[0].quality, 0)
     }
+
+    func testConjuredItemsDegradeTwiceAsFastAsNormal() {
+        let sellIn = -1
+        let originalQuality = 10
+        let items = [Item(name: "Conjured Evil Potato", sellIn: sellIn, quality: originalQuality)]
+        let app = GildedRose(items: items)
+
+        app.updateQuality()
+
+        XCTAssertEqual(app.items[0].quality, originalQuality - 4)
+    }
 }
