@@ -17,10 +17,10 @@ private extension Item {
     func updateQuality() {
         switch qualityEvolution {
 
-        case .decreasing:
+        case .decreasing(let decreaseFactor):
             sellIn = sellIn - 1
-            let multiplier = sellIn < 0 ? 2 : 1
-            quality = max(Constants.minimumQuality, quality - 1 * multiplier)
+            let timingFactor = sellIn < 0 ? 2 : 1
+            quality = max(Constants.minimumQuality, quality - 1 * timingFactor * decreaseFactor)
 
         case .increasing:
             sellIn = sellIn - 1
