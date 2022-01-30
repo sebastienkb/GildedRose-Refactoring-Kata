@@ -1,5 +1,5 @@
 public class GildedRose {
-    var items: [Item]
+    let items: [Item]
 
     public init(items: [Item]) {
         self.items = items
