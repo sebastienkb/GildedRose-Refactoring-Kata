@@ -47,7 +47,7 @@ private extension Item {
 
 private enum QualityEvolution {
 
-    case decreasing // decreases over time
+    case decreasing(factor: Int) // decreases over time with a decreasing factor
     case increasing // increases over time
     case pumpAndDump // increases sharply until its sellIn value, then drops to 0
     case unaffected // doesn't change
@@ -60,8 +60,10 @@ private enum QualityEvolution {
             self = .increasing
         } else if itemName.starts(with: "Backstage pass") {
             self = .pumpAndDump
+        } else if itemName.starts(with: "Conjured") { // with assumption that conjured items are specified by their name. If there is any more complexity you'd need a different refactor, possibly subclassing or composing.
+            self = .decreasing(factor: Constants.decreaseFactorForConjuredItems)
         } else {
-            self = .decreasing
+            self = .decreasing(factor: Constants.decreaseFactorForRegularItems)
         }
     }
 }
@@ -71,4 +73,6 @@ fileprivate enum Constants {
     static let minimumQuality = 0
     static let maximumRegularQuality = 50
     static let maximumLegendaryQuality = 80
+    static let decreaseFactorForRegularItems = 1
+    static let decreaseFactorForConjuredItems = 2
 }
